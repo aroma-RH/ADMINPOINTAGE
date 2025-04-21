@@ -1069,7 +1069,7 @@
                         >
                             <button id="download-btn1">
                                 <i class="fas fa-download"></i>
-                            </button><button class="EFFEC" onclick="toggleGood()">EFFECTIF</button>
+                            </button><button class="EFFEC" onclick="toggleGood()">EFFECTIF</button><button onclick="clearSheet()">مسح الجدول</button>
                         </div>
                         <div class="table-container">
                             <table border="1">
@@ -2048,7 +2048,19 @@ function showStatisticsjJ() {
     alert(message1);
 }
 
+function clearSheet() {
+    
+  const password = prompt("Veuillez saisir votre mot de passe pour effacer le pointage :");
+  if (password === null || password === "") return;
 
+  fetch('https://script.google.com/macros/s/AKfycbzkwTj4_H-LXAmeYzTpwCqO-oknoqumrWPYtDHe8QtFzV1jzfmzQEzRTXVSjpxYvbywTw/exec', {
+    method: 'POST',
+    body: new URLSearchParams({ password: password })
+  })
+  .then(response => response.text())
+  .then(data => alert(data))
+  .catch(error => alert("حدث خطأ: " + error));
+}
 window.addEventListener("load", () => {
     fetchData(); 
     fetchData1(); 
