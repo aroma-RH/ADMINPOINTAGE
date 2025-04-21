@@ -273,10 +273,12 @@
         }
         .EFFEC {
             display: flex;
-            background-color: #08e43f;
+            background-color: rgb(0, 121, 107);
             border-radius: 5px;
-            padding: 2.5px;
+            padding: 8px;
             margin: 2px;
+            color: #ccc;
+            font-weight: 600;
 
            
         }
@@ -1069,7 +1071,7 @@
                         >
                             <button id="download-btn1">
                                 <i class="fas fa-download"></i>
-                            </button><button class="EFFEC" onclick="toggleGood()">EFFECTIF</button><button onclick="clearSheet()">مسح الجدول</button>
+                            </button><button class="EFFEC" onclick="toggleGood()">effectif</button><button class="EFFEC" onclick="clearSheet()"> supprimer le pointage</button>
                         </div>
                         <div class="table-container">
                             <table border="1">
@@ -1082,7 +1084,8 @@
                                         <th>DATE</th>
                                         <th>FINCA</th>
                                         <th>SITUATION</th>
-                                        
+                                        <th>S CONTRAT</th>
+                                        <th>CONTRAT</th>
                                     </tr>
                                 </thead>
                                 <tbody id="table-body">
@@ -2049,18 +2052,15 @@ function showStatisticsjJ() {
 }
 
 function clearSheet() {
-    
-  const password = prompt("Veuillez saisir votre mot de passe pour effacer le pointage :");
-  if (password === null || password === "") return;
+    const password = prompt("Veuillez saisir votre mot de passe pour effacer les données :");
+      if (!password) return;
 
-  fetch('https://script.google.com/macros/s/AKfycbzkwTj4_H-LXAmeYzTpwCqO-oknoqumrWPYtDHe8QtFzV1jzfmzQEzRTXVSjpxYvbywTw/exec', {
-    method: 'POST',
-    body: new URLSearchParams({ password: password })
-  })
-  .then(response => response.text())
-  .then(data => alert(data))
-  .catch(error => alert("حدث خطأ: " + error));
-}
+      fetch("https://script.google.com/macros/s/AKfycbwt1_-CpAjoh37nb5OhMzHanRlCmITJ924CctrDpypU9CCcAXOKZ3CByNT7bOvrRmBiLA/exec?password=" + encodeURIComponent(password))
+        .then(res => res.text())
+        .then(data => alert(data))
+        
+    }
+
 window.addEventListener("load", () => {
     fetchData(); 
     fetchData1(); 
