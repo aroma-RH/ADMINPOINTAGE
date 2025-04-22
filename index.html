@@ -624,13 +624,16 @@
 }
 
 .data-table {
-    max-height: 800px;
-    overflow-y: auto;  
+
     margin-bottom: 20px; 
 }
 
 .table-container {
     
+    max-height: 800px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
     overflow-y: auto; 
 }
 
@@ -733,6 +736,8 @@
       max-height: 50vh;
       overflow-y: auto;
     }
+
+
 
     .modal-content1 h3 {
       margin-top: 0;
@@ -974,6 +979,7 @@
                     <span>Calculatrice</span>
                 </button>
             </a>
+            <button onclick="scrollTableToTop()" id="scrollTopBtn">↑ للأعلى</button>
             </div>
             </nav>
         </aside>
@@ -1026,14 +1032,12 @@
                         
                     </div>
                     
-
-                    
-                
                     <div class="stats-card">
                         <div class="stats-header">
                             <span class="stats-title">Total Equipes</span>
                         </div>
                         <div class="stats-value" id="totalEquipe">0</div>
+                       
                     </div>
                     <div class="stats-card" style="display: none;">
                         <div class="stats-header">
@@ -1071,7 +1075,7 @@
                         >
                             <button id="download-btn1">
                                 <i class="fas fa-download"></i>
-                            </button><button class="EFFEC" onclick="toggleGood()">effectif</button><button class="EFFEC" onclick="clearSheet()"> supprimer le pointage</button>
+                            </button><button class="EFFEC" onclick="toggleGood()">effectif</button><button class="EFFEC" onclick="clearSheet()"> supprimer</button>
                         </div>
                         <div class="table-container">
                             <table border="1">
@@ -1152,11 +1156,17 @@
           <div id="modalResult"></div>
         </div>
       </div>
+      
     <!-- Overlay for mobile sidebar -->
     <div class="overlay" onclick="toggleSidebar()"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
 
     <script>
+
+
+
+
+
 function toggleGood() {
     const elements = document.getElementsByClassName("data-table1");
     for (let i = 0; i < elements.length; i++) {
